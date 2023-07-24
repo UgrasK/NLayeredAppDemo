@@ -44,7 +44,7 @@
             // 
             this.dgwProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwProduct.Location = new System.Drawing.Point(11, 413);
+            this.dgwProduct.Location = new System.Drawing.Point(11, 322);
             this.dgwProduct.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
             this.dgwProduct.Name = "dgwProduct";
             this.dgwProduct.RowHeadersWidth = 51;
@@ -112,12 +112,13 @@
             this.tbxProductName.Name = "tbxProductName";
             this.tbxProductName.Size = new System.Drawing.Size(415, 30);
             this.tbxProductName.TabIndex = 1;
+            this.tbxProductName.TextChanged += new System.EventHandler(this.tbxProductName_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1357, 935);
+            this.ClientSize = new System.Drawing.Size(1357, 774);
             this.Controls.Add(this.gbxProductName);
             this.Controls.Add(this.gbxCategory);
             this.Controls.Add(this.dgwProduct);
