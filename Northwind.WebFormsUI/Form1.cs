@@ -1,4 +1,5 @@
-﻿using Northwind.Business.Concrete;
+﻿using Northwind.Business.Abstract;
+using Northwind.Business.Concrete;
 using Northwind.DataAccess.Concrete.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -17,15 +18,18 @@ namespace Northwind.WebFormsUI
         public Form1()
         {
             InitializeComponent();
+
+            // create a ProductManager object with a paramater
+            _productService = new ProductManager(new EfProductDal());
         }
 
+        private IProductService _productService;
         private void Form1_Load(object sender, EventArgs e)
         {
-            // create a ProductManager object with a paramater
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            
 
             // assign the list to datagridview form object "dgwProduct"
-            dgwProduct.DataSource = productManager.GetAll();
+            dgwProduct.DataSource = _productService.GetAll();
         }
     }
 }
