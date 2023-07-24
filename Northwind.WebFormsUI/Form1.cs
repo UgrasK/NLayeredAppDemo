@@ -1,6 +1,7 @@
 ﻿using Northwind.Business.Abstract;
 using Northwind.Business.Concrete;
 using Northwind.DataAccess.Concrete.EntityFramework;
+using Northwind.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,15 +22,44 @@ namespace Northwind.WebFormsUI
 
             // create a ProductManager object with a paramater
             _productService = new ProductManager(new EfProductDal());
+            _categoryService = new CategoryManager(new EfCategoryDal());
         }
 
         private IProductService _productService;
+        private ICategoryService _categoryService;
         private void Form1_Load(object sender, EventArgs e)
         {
-            
 
-            // assign the list to datagridview form object "dgwProduct"
+            LoadProducts();
+            LoadCategories();
+        }
+
+        private void LoadCategories()
+        {
+            cbxCategory.DataSource = _categoryService.GetAll();
+            cbxCategory.DisplayMember = "CategoryName";
+            cbxCategory.ValueMember = "CategoryId";
+        }
+
+
+        // assign the list to datagridview form object "dgwProduct"
+        private void LoadProducts()
+        {
             dgwProduct.DataSource = _productService.GetAll();
+        }
+
+        private void cbxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dgwProduct.DataSource = _productService.GetProductsByCategory(Convert.ToInt32(cbxCategory.SelectedValue));
+            }
+            catch
+            {
+
+            }
+
+
         }
     }
 }
