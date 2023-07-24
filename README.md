@@ -1,3 +1,3 @@
 # NLayeredAppDemo
 
-Multilayered app example to manage northwind database
+Multilayered windows forms app example to manage northwind database
