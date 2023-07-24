@@ -22,6 +22,8 @@ namespace Northwind.Business.Concrete
             _productDal = productDal;
         }
 
+        
+
         // get all products as List & return them
         public List<Product> GetAll()
         {
@@ -37,6 +39,11 @@ namespace Northwind.Business.Concrete
         public List<Product> GetProductsByProductName(string productName)
         {
             return _productDal.GetAll(p=> p.ProductName.ToLower().Contains(productName.ToLower()));
+        }
+
+        public void Add(Product product)
+        {
+            _productDal.Add(product);
         }
     }
 }

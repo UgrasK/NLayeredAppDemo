@@ -39,6 +39,10 @@ namespace Northwind.WebFormsUI
             cbxCategory.DataSource = _categoryService.GetAll();
             cbxCategory.DisplayMember = "CategoryName";
             cbxCategory.ValueMember = "CategoryId";
+
+            cbxCategoryId.DataSource = _categoryService.GetAll();
+            cbxCategoryId.DisplayMember = "CategoryName";
+            cbxCategoryId.ValueMember = "CategoryId";
         }
 
 
@@ -75,6 +79,20 @@ namespace Northwind.WebFormsUI
             }
 
             
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            _productService.Add(new Product
+            {
+                CategoryId= Convert.ToInt32(cbxCategoryId.SelectedValue),
+                ProductName= tbxProductName2.Text,
+                UnitPrice= Convert.ToDecimal(tbxUnitPrice.Text),
+                QuantityPerUnit= tbxQuantityPerUnit.Text,
+                UnitsInStock=Convert.ToInt16(tbxStock.Text)
+            });
+            MessageBox.Show("Ürün kaydedildi.");
+            LoadProducts();
         }
     }
 }
