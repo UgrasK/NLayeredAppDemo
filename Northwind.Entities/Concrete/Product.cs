@@ -8,6 +8,7 @@ namespace Northwind.Entities.Concrete
 {
     public class Product
     {
+        // define properties with matching names on the used database
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int CategoryId { get; set; }

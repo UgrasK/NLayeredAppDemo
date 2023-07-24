@@ -1,14 +1,17 @@
-﻿using Northwind.Entities.Concrete;
+﻿using Northwind.DataAccess.Abstract;
+using Northwind.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Northwind.DataAccess.Concrete
+namespace Northwind.DataAccess.Concrete.EntityFramework
 {
-    public class ProductDal
+    // implement interface to use its methods
+    public class EfProductDal : IProductDal
     {
+        // get all elements from database and return a list
         public List<Product> GetAll()
         {
             using (NorthwindContext context = new NorthwindContext())
@@ -17,6 +20,7 @@ namespace Northwind.DataAccess.Concrete
             }
         }
 
+        // get elemets by id from database and return a list
         public Product Get(int id)
         {
             using (NorthwindContext context = new NorthwindContext())
@@ -25,6 +29,7 @@ namespace Northwind.DataAccess.Concrete
             }
         }
 
+        // add a product to database
         public void Add(Product product)
         {
             using (NorthwindContext context = new NorthwindContext())
@@ -33,6 +38,8 @@ namespace Northwind.DataAccess.Concrete
                 context.SaveChanges();
             }
         }
+
+        // update a product in database
         public void Update(Product product)
         {
             using (NorthwindContext context = new NorthwindContext())
@@ -41,10 +48,11 @@ namespace Northwind.DataAccess.Concrete
                 context.SaveChanges();
             }
         }
+
+        // delete a product from database
         public void Delete(Product product)
         {
-
+            // delete product
         }
-
     }
 }
