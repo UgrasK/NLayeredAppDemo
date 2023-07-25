@@ -1,13 +1,18 @@
 ﻿using Northwind.Business.Abstract;
+using Northwind.Business.ValidationRules.FluentValidation;
 using Northwind.DataAccess.Abstract;
 using Northwind.DataAccess.Concrete;
 using Northwind.DataAccess.Concrete.EntityFramework;
 using Northwind.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
+using ValidationException = FluentValidation.ValidationException;
+using Northwind.Business.Utilities;
 
 namespace Northwind.Business.Concrete
 {
@@ -43,7 +48,18 @@ namespace Northwind.Business.Concrete
 
         public void Add(Product product)
         {
+            ValidationTool.Validate(new ProductValidator(), product);
             _productDal.Add(product);
+        }
+
+        public void Update(Product product)
+        {
+            _productDal.Update(product);
+        }
+
+        public void Delete(Product product)
+        {
+            _productDal.Delete(product);
         }
     }
 }
